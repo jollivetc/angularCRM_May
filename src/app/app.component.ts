@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'crm-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angularCRM';
+  title:string = 'Apside';
+  fruit:string = "Pomme";
+  myClass= "apple"
+  fruits = ['Cerise', 'poire', 'framboise'];
+
+
+  onClick($event:MouseEvent){
+    this.fruit="Banane"
+    this.myClass= "banane"
+    console.log($event)
+  }
+  onSubmit(myForm:NgForm){
+    console.log(myForm.value)
+  }
 }
