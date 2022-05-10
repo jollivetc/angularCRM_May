@@ -4,14 +4,12 @@
       <mat-label for="login">Login</mat-label>
       <input matInput type="text" name="login" formControlName="login">
     </mat-form-field>
-    <span *ngIf="shouldShowErrors()">
-      <span *ngIf="loginForm.get('login')?.errors?.['required']">
-        login est obligatoire
-      </span>
-      <span *ngIf="loginForm.get('login')?.errors?.['minlength']">
-        login doit être au moins de 3 charactères
-      </span>
-    </span>
+    <crm-help [field]="loginForm.get('login')!"
+              [errorMessages]="{
+                required : 'login est obligatoire',
+                minlength: 'login doit être d\'au moins 3 caractères'
+              }">
+    </crm-help>
   </p>
   <p>
     <mat-form-field>
