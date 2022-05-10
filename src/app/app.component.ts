@@ -9,4 +9,10 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 export class AppComponent {
   title:string = 'angularCRM';
 
+  emitted($event:string){
+    console.log($event)
+  }
+  emitted2($event:string){
+    console.log("emitted 2")
+  }
 }

@@ -6,3 +6,7 @@
 
 
 <crm-login></crm-login>
+
+<crm-dummy [label]="title" (clicked)="emitted($event)"></crm-dummy>
+<crm-dummy label="Hello !" (clicked)="emitted2($event)"></crm-dummy>
+<crm-dummy [label]="title" (clicked)="emitted($event)"></crm-dummy>
