@@ -11,12 +11,21 @@ import { Consumer } from '../model/consumer';
 export class ConsumerListeComponent implements OnInit, OnDestroy{
 
   consumers?:Consumer[];
+  search:string= '';
   private subs: Subscription[]=[]
 
   constructor(private consumersService : ConsumerService) { }
 
   ngOnInit(): void {
-    const sub: Subscription = this.consumersService.getConsumers().subscribe({
+    this.callServer()
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub=>sub.unsubscribe());
+  }
+
+  private callServer(param?:string){
+    const sub: Subscription = this.consumersService.findConsumers(param).subscribe({
       next:(consumers:Consumer[])=>{this.consumers=consumers},
       error:(error:Error)=>{console.error(error)},
       complete:()=>{}
@@ -24,7 +33,7 @@ export class ConsumerListeComponent implements OnInit, OnDestroy{
     this.subs.push(sub);
   }
 
-  ngOnDestroy(): void {
-    this.subs.forEach(sub=>sub.unsubscribe());
+  doSearch(){
+    this.callServer(this.search)
   }
 }

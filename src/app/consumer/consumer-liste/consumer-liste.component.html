@@ -1,1 +1,25 @@
-{{consumers | json}}
+<input type="text" [(ngModel)]="search" (ngModelChange)="doSearch()">
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Firstname</th>
+      <th>lastname</th>
+      <th>email</th>
+      <th>telephone</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let consumer of consumers">
+      <td>{{consumer.id}}</td>
+      <td>{{consumer.firstname}}</td>
+      <td>{{consumer.lastname}}</td>
+      <td>{{consumer.email}}</td>
+      <td>{{consumer.phone|phone}}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
