@@ -9,6 +9,8 @@ import { DemoObservableService } from '../common/demo-observable.service';
 })
 export class HomeComponent implements OnInit {
 
+  phoneNumber:string = '0123456789';
+  myDate : Date=new Date();
   constructor(private demo:DemoObservableService) { }
 
   ngOnInit(): void {
