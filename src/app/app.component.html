@@ -9,6 +9,13 @@
     </a>
   </span>
   <span>
+    <a mat-icon-button matTooltip="Liste des consommateurs"
+            [routerLink]="'/consumers'"
+            [routerLinkActive]="'is-active'">
+      <mat-icon>list</mat-icon>
+    </a>
+  </span>
+  <span>
     <a mat-icon-button matTooltip="Login"
             [routerLink]="'/login'"
             [routerLinkActive]="'is-active'">
@@ -20,7 +27,3 @@
 
 
 <router-outlet></router-outlet>
-
-<crm-dummy [label]="title" (clicked)="emitted($event)"></crm-dummy>
-<crm-dummy label="Hello !" (clicked)="emitted2($event)"></crm-dummy>
-<crm-dummy [label]="title" (clicked)="emitted($event)"></crm-dummy>
