@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private authent: AuthenticationService) {
+  constructor(private authent: AuthenticationService, private router: Router) {
+    this.authent.disconnect();
     this.loginForm= new FormGroup({
       login : new FormControl('', [Validators.required, Validators.minLength(3)]),
       password: new  FormControl('', [Validators.required, checkPassword])
@@ -23,11 +25,10 @@ export class LoginComponent implements OnInit {
   onLogin(){
     console.log(this.loginForm)
     const user= this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password);
+    if(user) this.router.navigateByUrl('home');
     console.log(user);
   }
-  shouldShowErrors():false |ValidationErrors|undefined|null{
-    return this.loginForm.get('login')?.touched && this.loginForm.get('login')?.errors;
-  }
+
 }
 
 function checkPassword(c: AbstractControl): ValidationErrors | null {
