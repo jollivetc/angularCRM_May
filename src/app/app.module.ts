@@ -9,6 +9,8 @@ import { AppMaterialModule } from './app-material.module';
 import { DummyComponent } from './component/dummy/dummy.component';
 import { HelpComponent } from './component/help/help.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { JWTIntercepteurService } from './common/jwtintercepteur.service';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,13 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     AppMaterialModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:JWTIntercepteurService, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

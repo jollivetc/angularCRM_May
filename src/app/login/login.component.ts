@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
+import { User } from './model/user';
 
 @Component({
   selector: 'crm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
+  private subs :Subscription[]=[];
 
   constructor(private authent: AuthenticationService, private router: Router) {
     this.authent.disconnect();
@@ -23,10 +26,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onLogin(){
-    console.log(this.loginForm)
-    const user= this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password);
-    if(user) this.router.navigateByUrl('home');
-    console.log(user);
+
+    const observable:Observable<User>= this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password);
+    const subscription = observable.subscribe({
+      next: (user:User)=>{ this.router.navigateByUrl('home')},
+      error: (error:Error)=>{ alert('error au login') },
+      complete: ()=>{ console.log('complete')}
+    });
+    this.subs.push(subscription);
+  }
+
+  ngOnDestroy(): void {
+      this.subs.forEach(
+        (sub:Subscription)=>{ sub.unsubscribe() }
+      )
   }
 
 }
