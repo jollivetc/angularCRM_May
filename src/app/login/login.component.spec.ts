@@ -32,7 +32,7 @@ describe('LoginComponent', () => {
   });
 
   beforeEach(() => {
-
+    spyOn<Partial<AuthenticationService>, any>(authenticationStub, 'disconnect');
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -44,5 +44,8 @@ describe('LoginComponent', () => {
   it('should disable login button on startup', ()=>{
     const element = fixture.nativeElement;
     expect(element.querySelector('button').disabled).toBeTrue();
+  })
+  it('should call disconnect', ()=>{
+    expect(authenticationStub.disconnect).toHaveBeenCalled();
   })
 });
