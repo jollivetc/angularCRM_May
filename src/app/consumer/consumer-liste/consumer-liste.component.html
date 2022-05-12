@@ -1,4 +1,9 @@
 <input type="text" [(ngModel)]="search" (ngModelChange)="doSearch()">
+<span>
+  <a mat-icon-button [routerLink]="'/consumers/add'">
+    <mat-icon>personadd</mat-icon>
+  </a>
+</span>
 
 
 <table>

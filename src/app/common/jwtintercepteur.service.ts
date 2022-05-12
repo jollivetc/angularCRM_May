@@ -1,7 +1,6 @@
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { observeNotification } from 'rxjs/internal/Notification';
 import { AuthenticationService } from '../login/authentication.service';
 
 @Injectable()
