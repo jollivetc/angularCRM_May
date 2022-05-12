@@ -58,6 +58,9 @@
       </crm-help>
     </p>
     <div class="buttons-bar">
+      <button color="warn" id="cancelButton" mat-icon-button matTooltip="Cancel" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon>
+      </button>
       <!-- Bouton de validation du formulaire -->
       <button [disabled]="!consumerForm.valid" color="primary" id="validButton" mat-icon-button matTooltip="Valider" type="submit">
         <mat-icon>check</mat-icon>

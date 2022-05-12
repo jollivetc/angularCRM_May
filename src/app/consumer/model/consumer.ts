@@ -5,7 +5,7 @@ export interface Consumer {
   lastname: string;
   email: string;
   phone: string;
-  createdAt: number;
+  createdAt?: number;
   updatedAt?: number;
 }
 
