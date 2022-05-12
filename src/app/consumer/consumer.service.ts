@@ -17,7 +17,15 @@ export class ConsumerService {
     return this.http.get<Consumer[]>(`/api/consumers?q=${filter}`);
   }
 
-  createConsumer(consumer:Consumer):Observable<Consumer>{
-    return this.http.post<Consumer>('/api/consumers', consumer);
+  saveConsumer(consumer:Consumer):Observable<Consumer>{
+    if(consumer.id){
+      return this.http.put<Consumer>(`/api/consumers/${consumer.id}`, consumer)
+    }else{
+      return this.http.post<Consumer>('/api/consumers', consumer);
+    }
+  }
+
+  getConsumer(id:string):Observable<Consumer>{
+    return this.http.get<Consumer>(`/api/consumers/${id}`)
   }
 }

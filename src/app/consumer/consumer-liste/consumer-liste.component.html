@@ -24,7 +24,7 @@
       <td>{{consumer.lastname}}</td>
       <td>{{consumer.email}}</td>
       <td>{{consumer.phone|phone}}</td>
-      <td></td>
+      <td> <a mat-icon-button [routerLink]="['/consumers',consumer.id]" > <mat-icon>edit</mat-icon> </a> </td>
     </tr>
   </tbody>
 </table>

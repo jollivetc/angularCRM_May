@@ -29,8 +29,8 @@ describe('ConsumerService', () => {
     consumer = {civility:"mr", firstname:"B", lastname:"C",email:"D",phone:"E"}
     returnedConsumer={id:1, civility:"mr", firstname:"B", lastname:"C",email:"D",phone:"E"}
 
-    service.createConsumer(consumer).subscribe({
-      next:(result)=>{
+    service.saveConsumer(consumer).subscribe({
+      next:(result:Consumer)=>{
         expect(result).toBe(returnedConsumer)
       }
     });
