@@ -26,6 +26,10 @@ export class ConsumerService {
   }
 
   getConsumer(id:string):Observable<Consumer>{
-    return this.http.get<Consumer>(`/api/consumers/${id}`)
+    return this.http.get<Consumer>(`/api/consumers/${id}`);
+  }
+
+  deleteConsumer(id:number):Observable<Object>{
+    return this.http.delete<Object>(`/api/consumers/${id}`);
   }
 }

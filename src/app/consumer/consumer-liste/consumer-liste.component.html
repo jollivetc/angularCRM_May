@@ -24,7 +24,10 @@
       <td>{{consumer.lastname}}</td>
       <td>{{consumer.email}}</td>
       <td>{{consumer.phone|phone}}</td>
-      <td> <a mat-icon-button [routerLink]="['/consumers',consumer.id]" > <mat-icon>edit</mat-icon> </a> </td>
+      <td>
+        <a mat-icon-button [routerLink]="['/consumers',consumer.id]" > <mat-icon>edit</mat-icon> </a>
+        <a mat-icon-button (click)="onDelete(consumer.id!)"> <mat-icon>delete</mat-icon> </a>
+      </td>
     </tr>
   </tbody>
 </table>
